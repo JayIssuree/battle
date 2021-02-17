@@ -1,8 +1,8 @@
-describe "the homepage", type: :feature do
+feature "the homepage" do
     
-    it "contains a welcome message" do
+    scenario "contains a welcome message" do
         visit('/')
-        expect(page).to have_content 'Hello Battle!'
+        expect(page).to have_content 'Battle!'
     end
 
 end
