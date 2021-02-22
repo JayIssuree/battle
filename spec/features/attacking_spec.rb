@@ -14,4 +14,11 @@ describe "attacking", type: :feature do
         expect(page).to have_content('Player 2: 80 HP')
     end
 
+    it "confirms player 2's attack" do
+        sign_in_and_play
+        web_attack
+        click_button "Attack!"
+        expect(page).to have_content("Player 2 attacked Player 1")
+    end
+
 end

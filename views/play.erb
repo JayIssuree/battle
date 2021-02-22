@@ -4,6 +4,8 @@
     <%= @game.player1.name %>: <%= @game.player1.hp %> HP
     <br>
     <%= @game.player2.name %>: <%= @game.player2.hp %> HP
+    <br>
+    <%= @game.attacking_player.name %>'s turn
 <form action=/attack method=get>
     <input type=submit value=Attack!>
 </form>
