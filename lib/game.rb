@@ -2,6 +2,15 @@ require_relative 'player'
 
 class Game
 
+    def self.create(player1:, player2:)
+        @current_game = Game.new(player1: player1, player2: player2)
+    end
+
+    def self.current_game
+        @current_game
+    end
+
+
     attr_reader :player1, :player2, :attacking_player, :players
 
     def initialize(player1:, player2:)
@@ -18,6 +27,16 @@ class Game
 
     def defending_player
         defender
+    end
+
+    def finished?
+        attacking_player.hp == 0 || defending_player.hp == 0
+    end
+
+    def loser
+        players.select{|player|
+            player.hp == 0
+        }.first
     end
 
     private
