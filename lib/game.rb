@@ -30,12 +30,12 @@ class Game
     end
 
     def finished?
-        attacking_player.hp == 0 || defending_player.hp == 0
+        attacking_player.hp <= 0 || defending_player.hp <= 0
     end
 
     def loser
         players.select{|player|
-            player.hp == 0
+            player.hp <= 0
         }.first
     end
 

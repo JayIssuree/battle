@@ -24,8 +24,8 @@ describe Player do
 
     describe '#reduce_hp' do
         
-        it 'reduces the hit points of the player' do
-            expect{ subject.reduce_hp }.to change{ subject.hp }.by(-20)
+        it 'reduces the hit points of the player by a random amount' do
+            expect{ subject.reduce_hp }.to change{ subject.hp }
         end
 
     end

@@ -10,7 +10,7 @@ class Player
     end
 
     def reduce_hp
-        @hp -= 20
+        @hp -= rand(50)
     end
 
 end

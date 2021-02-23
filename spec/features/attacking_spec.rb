@@ -11,7 +11,7 @@ describe "attacking", type: :feature do
         click_button "Attack!"
         click_button "Return"
         expect(page).to have_content('Player 1: 100 HP')
-        expect(page).to have_content('Player 2: 80 HP')
+        expect(page).not_to have_content('Player 2: 100 HP')
     end
 
     it "confirms player 2's attack" do
