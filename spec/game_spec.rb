@@ -75,4 +75,16 @@ describe Game do
 
     end
 
+#     context 'Computerized opponent' do
+        
+#         describe '.create' do
+
+#             it 'creates an instance of Game' do
+#                 expect(described_class.create(player1: player1)).to be_an_instance_of(described_class)
+#             end
+    
+#         end
+
+#     end
+
 end

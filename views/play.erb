@@ -6,6 +6,13 @@
     <%= @game.player2.name %>: <%= @game.player2.hp %> HP
     <br>
     <%= @game.attacking_player.name %>'s turn
-<form action=/attack method=get>
-    <input type=submit value=Attack!>
-</form>
+
+<% if @game.attacking_player.is_a?(Computer) %>
+    <form action=/attack method=get>
+        <input type=submit value='Receive incoming attack'>
+    </form>
+<% else %>
+    <form action=/attack method=get>
+        <input type=submit value='Attack <%= @game.defending_player.name%>'>
+    </form>
+<% end %>

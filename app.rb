@@ -8,7 +8,9 @@ class Battle < Sinatra::Base
     end
 
     post '/names' do
-        Game.create(player1: Player.new(name: params[:player_1]), player2: Player.new(name: params[:player_2]))
+        player1 = params[:player_1].empty? ? Computer.new : Player.new(name: params[:player_1])
+        player2 = params[:player_2].empty? ? Computer.new : Player.new(name: params[:player_2])
+        Game.create(player1: player1, player2: player2)
         redirect '/play'
     end
 
