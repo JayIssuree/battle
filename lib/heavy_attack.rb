@@ -1,0 +1,4 @@
+class HeavyAttack
+
+
+end

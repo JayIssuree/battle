@@ -1,5 +1,6 @@
 require_relative 'player'
 require_relative 'computer'
+require_relative 'heavy_attack'
 
 class Game
 
@@ -11,14 +12,16 @@ class Game
         @current_game
     end
 
+    DEFAULT_ATTACK_LIST = [HeavyAttack]
 
-    attr_reader :player1, :player2, :attacking_player, :players
+    attr_reader :player1, :player2, :attacking_player, :players, :attack_list
 
-    def initialize(player1:, player2:)
+    def initialize(player1:, player2:, attack_list: DEFAULT_ATTACK_LIST)
         @player1 = player1
         @player2 = player2
         @players = [player1, player2]
         @attacking_player = players.first
+        @attack_list = attack_list
     end
 
     def attack_defender

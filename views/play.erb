@@ -12,6 +12,15 @@
         <input type=submit value='Receive incoming attack'>
     </form>
 <% else %>
+
+    <% @game.attack_list.each do |move| %>
+
+        <form>
+            <input type=submit value=<%= move.name %>>
+        </form>
+
+    <% end %>
+
     <form action=/attack method=get>
         <input type=submit value='Attack <%= @game.defending_player.name%>'>
     </form>

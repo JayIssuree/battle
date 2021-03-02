@@ -4,7 +4,11 @@ describe Game do
 
     let(:player1) { double :player, :reduce_hp => nil }
     let(:player2) { double :player, :reduce_hp => nil }
-    let(:subject) { described_class.new(player1: player1, player2: player2) }
+    let(:attack1) { double :attack }
+    let(:attack2) { double :attack }
+    let(:attack3) { double :attack }
+    let(:attack_list) { [attack1, attack2, attack3] }
+    let(:subject) { described_class.new(player1: player1, player2: player2, attack_list: attack_list) }
 
     describe '.create' do
 
@@ -75,16 +79,12 @@ describe Game do
 
     end
 
-#     context 'Computerized opponent' do
+    context 'attack_list' do
         
-#         describe '.create' do
+        it 'is initialized with a set of attacking moves' do
+            expect(subject.attack_list).to eq(attack_list)
+        end
 
-#             it 'creates an instance of Game' do
-#                 expect(described_class.create(player1: player1)).to be_an_instance_of(described_class)
-#             end
-    
-#         end
-
-#     end
+    end
 
 end
