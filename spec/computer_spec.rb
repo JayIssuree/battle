@@ -22,8 +22,8 @@ describe Computer do
 
     describe '#reduce_hp' do
         
-        it 'reduces the hit points of the player by a random amount' do
-            expect{ subject.reduce_hp }.to change{ subject.hp }
+        it 'reduces the hit points of the computer by a random amount' do
+            expect{ subject.reduce_hp(15) }.to change{ subject.hp }
         end
 
     end

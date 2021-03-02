@@ -8,20 +8,17 @@
     <%= @game.attacking_player.name %>'s turn
 
 <% if @game.attacking_player.is_a?(Computer) %>
-    <form action=/attack method=get>
+    <form action=/computer_attack method=post>
         <input type=submit value='Receive incoming attack'>
     </form>
 <% else %>
 
     <% @game.attack_list.each do |move| %>
 
-        <form>
+        <form action=/attack/<%= move.name %> method=post>
             <input type=submit value=<%= move.name %>>
         </form>
 
     <% end %>
-
-    <form action=/attack method=get>
-        <input type=submit value='Attack <%= @game.defending_player.name%>'>
-    </form>
+    
 <% end %>

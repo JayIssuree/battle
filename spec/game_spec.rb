@@ -4,9 +4,9 @@ describe Game do
 
     let(:player1) { double :player, :reduce_hp => nil }
     let(:player2) { double :player, :reduce_hp => nil }
-    let(:attack1) { double :attack }
-    let(:attack2) { double :attack }
-    let(:attack3) { double :attack }
+    let(:attack1) { double :attack, :name => "attack1" }
+    let(:attack2) { double :attack, :name => "attack2" }
+    let(:attack3) { double :attack, :name => "attack3" }
     let(:attack_list) { [attack1, attack2, attack3] }
     let(:subject) { described_class.new(player1: player1, player2: player2, attack_list: attack_list) }
 
@@ -37,15 +37,6 @@ describe Game do
 
     end
 
-    describe '#attack_defender' do
-        
-        it 'calls reduce_hp on the defending player' do
-            expect(player2).to receive(:reduce_hp)
-            subject.attack_defender
-        end
-
-    end
-
     describe '#current_turn' do
 
         it 'returns the current_turns player' do
@@ -53,7 +44,7 @@ describe Game do
         end
 
         it 'changes the current_turn to the player that has just been attacked' do
-            subject.attack_defender
+            subject.switch_turns
             expect(subject.attacking_player).to eq(player2)
         end
 
@@ -83,6 +74,11 @@ describe Game do
         
         it 'is initialized with a set of attacking moves' do
             expect(subject.attack_list).to eq(attack_list)
+        end
+
+        it 'attacks the defending player with a given move' do
+            expect(attack1).to receive(:attack).with(subject.defending_player)
+            subject.attack_defender("attack1")
         end
 
     end

@@ -1,4 +1,4 @@
-<%= @game.attacking_player.name %> attacked <%= @game.defending_player.name %>
-<form action=/attack method=post>
+<%= @game.attacking_player.name %> used <%= @move %> on <%= @game.defending_player.name %>
+<form action=/switch_turns method=post>
     <input type=submit value=Return>
 </form>

@@ -9,8 +9,8 @@ class Player
         @hp = hp
     end
 
-    def reduce_hp
-        @hp -= rand(50)
+    def reduce_hp(amount)
+        @hp -= amount
     end
 
 end

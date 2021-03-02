@@ -10,7 +10,7 @@ describe "computer opponent", type: :feature do
         visit('/')
         fill_in('player_1', with: 'Player 1')
         click_button('Submit')
-        click_button('Attack Computer')
+        click_button('HeavyAttack')
         click_button('Return')
         expect(page).to have_button('Receive incoming attack')
     end

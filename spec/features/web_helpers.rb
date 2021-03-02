@@ -6,6 +6,6 @@ def sign_in_and_play
 end
 
 def web_attack
-    click_button('Attack Player 2')
+    click_button('HeavyAttack')
     click_button('Return')
 end

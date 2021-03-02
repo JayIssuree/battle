@@ -24,9 +24,13 @@ class Game
         @attack_list = attack_list
     end
 
-    def attack_defender
-        defending_player.reduce_hp
-        switch_turns
+    # def attack_defender
+    #     defending_player.reduce_hp
+    #     switch_turns
+    # end
+
+    def attack_defender(move_name)
+        find_move(move_name).attack(defending_player)
     end
 
     def defending_player
@@ -43,6 +47,10 @@ class Game
         }.first
     end
 
+    def switch_turns
+        @attacking_player = defending_player
+    end
+
     private
 
     def defender
@@ -51,8 +59,10 @@ class Game
         }.first
     end
 
-    def switch_turns
-        @attacking_player = defending_player
+    def find_move(move_name)
+        attack_list.select{ |attack| 
+            attack.name == move_name
+        }.first
     end
 
 end
