@@ -1,6 +1,8 @@
 require_relative 'player'
 require_relative 'computer'
 require_relative 'heavy_attack'
+require_relative 'medium_attack'
+require_relative 'light_attack'
 
 class Game
 
@@ -12,7 +14,7 @@ class Game
         @current_game
     end
 
-    DEFAULT_ATTACK_LIST = [HeavyAttack]
+    DEFAULT_ATTACK_LIST = [HeavyAttack, MediumAttack, LightAttack]
 
     attr_reader :player1, :player2, :attacking_player, :players, :attack_list
 
@@ -23,11 +25,6 @@ class Game
         @attacking_player = players.first
         @attack_list = attack_list
     end
-
-    # def attack_defender
-    #     defending_player.reduce_hp
-    #     switch_turns
-    # end
 
     def attack_defender(move_name)
         find_move(move_name).attack(defending_player)
