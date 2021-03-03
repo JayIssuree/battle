@@ -1,8 +1,5 @@
 require_relative 'player'
 require_relative 'computer'
-require_relative 'heavy_attack'
-require_relative 'medium_attack'
-require_relative 'light_attack'
 
 class Game
 
@@ -14,20 +11,17 @@ class Game
         @current_game
     end
 
-    DEFAULT_ATTACK_LIST = [HeavyAttack, MediumAttack, LightAttack]
+    attr_reader :player1, :player2, :attacking_player, :players
 
-    attr_reader :player1, :player2, :attacking_player, :players, :attack_list
-
-    def initialize(player1:, player2:, attack_list: DEFAULT_ATTACK_LIST)
+    def initialize(player1:, player2:)
         @player1 = player1
         @player2 = player2
         @players = [player1, player2]
         @attacking_player = players.first
-        @attack_list = attack_list
     end
 
     def attack_defender(move_name)
-        find_move(move_name).attack(defending_player)
+        attacking_player.select_move(move_name).attack(defending_player)
     end
 
     def defending_player
@@ -53,12 +47,6 @@ class Game
     def defender
         players.reject{|player|
             player == attacking_player
-        }.first
-    end
-
-    def find_move(move_name)
-        attack_list.select{ |attack| 
-            attack.name == move_name
         }.first
     end
 

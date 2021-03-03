@@ -13,7 +13,7 @@
     </form>
 <% else %>
 
-    <% @game.attack_list.each do |move| %>
+    <% @game.attacking_player.move_list.each do |move| %>
 
         <form action=/attack method=post>
             <input type=submit name=move_name value=<%= move.name %>>

@@ -2,7 +2,11 @@ require 'player'
 
 describe Player do
 
-    let(:subject) { described_class.new(name: 'RSPEC Player') }
+    let(:subject) { described_class.new(name: 'RSPEC Player', move_list: move_list) }
+    let(:attack1) { double :attack, :name => "attack1" }
+    let(:attack2) { double :attack, :name => "attack2" }
+    let(:attack3) { double :attack, :name => "attack3" }
+    let(:move_list) { [attack1, attack2, attack3] }
     
     describe '#initialie' do
         
@@ -20,12 +24,24 @@ describe Player do
             expect(player2.hp).to eq(new_hp)
         end
 
+        it 'is initialized with a default set of moves' do
+            expect(subject.move_list).to eq(move_list)
+        end
+
     end
 
     describe '#reduce_hp' do
         
         it 'reduces the hit points of the player by a random amount' do
             expect{ subject.reduce_hp(15) }.to change{ subject.hp }
+        end
+
+    end
+
+    describe '#select_move(move_name)' do
+        
+        it 'returns the move class given a string' do
+            expect(subject.select_move('attack1')).to eq(attack1)
         end
 
     end

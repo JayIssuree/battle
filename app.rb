@@ -42,8 +42,8 @@ class Battle < Sinatra::Base
     end
 
     post '/computer_attack' do
-        @random_move = Game.current_game.attack_list.sample
-        Game.current_game.attack_defender(@random_move.name)
+        @random_move = Game.current_game.attacking_player.random_move.name
+        Game.current_game.attack_defender(@random_move)
         redirect "/attack/#{@random_move}"
     end
 
