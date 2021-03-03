@@ -1,7 +1,7 @@
-class MediumAttack
+class Attack
 
-    HIT_CHANCE = 80
-    DAMAGE_RANGE = 20..35
+    HIT_CHANCE = 0
+    DAMAGE_RANGE = 0
 
     def self.attack(player)
         player.reduce_hp(calculate_damage) if hit?

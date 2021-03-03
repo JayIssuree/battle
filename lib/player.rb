@@ -1,6 +1,6 @@
-require_relative 'heavy_attack'
-require_relative 'medium_attack'
-require_relative 'light_attack'
+require_relative './attacks/heavy_attack'
+require_relative './attacks/medium_attack'
+require_relative './attacks/light_attack'
 
 class Player
 

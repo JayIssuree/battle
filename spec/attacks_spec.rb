@@ -1,6 +1,6 @@
-require 'heavy_attack'
+require './lib/attacks/attack'
 
-describe HeavyAttack do
+describe Attack do
 
     let(:subject) { described_class }
     let(:player) { double :player }
