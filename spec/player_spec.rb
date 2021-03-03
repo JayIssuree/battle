@@ -28,6 +28,10 @@ describe Player do
             expect(subject.move_list).to eq(move_list)
         end
 
+        it 'is initialzed not paralyzed' do
+            expect(subject).to_not be_paralyzed
+        end
+
     end
 
     describe '#reduce_hp' do
@@ -42,6 +46,26 @@ describe Player do
         
         it 'returns the move class given a string' do
             expect(subject.select_move('attack1')).to eq(attack1)
+        end
+
+    end
+
+    describe '#become_paralyzed' do
+        
+        it 'paralyzes the player' do
+            subject.become_paralyzed
+            expect(subject).to be_paralyzed
+        end
+
+    end
+
+    describe '#clear_status_effects' do
+        
+        it 'clears the player of being paralyzed' do
+            subject.become_paralyzed
+            expect(subject).to be_paralyzed
+            subject.clear_status_effects
+            expect(subject).to_not be_paralyzed
         end
 
     end

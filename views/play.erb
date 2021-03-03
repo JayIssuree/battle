@@ -7,10 +7,21 @@
     <br>
     <%= @game.attacking_player.name %>'s turn
 
-<% if @game.attacking_player.is_a?(Computer) %>
+<% if @game.attacking_player.paralyzed? %>
+
+    <br>
+    <%= @game.attacking_player.name %> is paralyzed
+    <br>
+    <form action=/clear_status_effects method=post>
+        <input type=submit value=Next>
+    </form>
+
+ <% elsif @game.attacking_player.is_a?(Computer) %>
+
     <form action=/computer_attack method=post>
         <input type=submit value='Receive incoming attack'>
     </form>
+
 <% else %>
 
     <% @game.attacking_player.move_list.each do |move| %>

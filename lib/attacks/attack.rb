@@ -10,11 +10,11 @@ class Attack
     private
 
     def self.hit?
-        rand(0..100) < HIT_CHANCE
+        rand(0..100) < self::HIT_CHANCE
     end
 
     def self.calculate_damage
-        rand(DAMAGE_RANGE)
+        rand(self::DAMAGE_RANGE)
     end
 
 end

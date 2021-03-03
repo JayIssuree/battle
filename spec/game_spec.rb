@@ -33,7 +33,7 @@ describe Game do
 
     end
 
-    describe '#current_turn' do
+    describe '#switch_turns' do
 
         it 'returns the current_turns player' do
             expect(subject.attacking_player).to eq(player1)
