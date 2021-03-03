@@ -30,7 +30,7 @@ class Battle < Sinatra::Base
         redirect '/play'
     end
 
-    post '/attack/:move_name' do
+    post '/attack' do
         Game.current_game.attack_defender(params[:move_name])
         redirect "/attack/#{params[:move_name]}"
     end

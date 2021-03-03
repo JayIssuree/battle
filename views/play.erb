@@ -15,8 +15,8 @@
 
     <% @game.attack_list.each do |move| %>
 
-        <form action=/attack/<%= move.name %> method=post>
-            <input type=submit value=<%= move.name %>>
+        <form action=/attack method=post>
+            <input type=submit name=move_name value=<%= move.name %>>
         </form>
 
     <% end %>
