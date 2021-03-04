@@ -8,6 +8,8 @@ describe Player do
     let(:attack3) { double :attack, :name => "attack3" }
     let(:paralyze_class) { double :paralyze_class, :name => "Paralyze" }
     let(:paralyze) { double :paralyze, :class => paralyze_class, :over? => nil }
+    let(:poison_class) { double :poison_class, :name => "Poison" }
+    let(:poison) { double :poison, :class => poison_class, :over? => nil, :damage => 10 }
     let(:move_list) { [attack1, attack2, attack3] }
     
     describe '#initialie' do
@@ -71,6 +73,15 @@ describe Player do
     
         end
 
+        describe '#poisoned' do
+            
+            it 'returns true when the player is poisoned' do
+                subject.add_status_effect(poison)
+                expect(subject.poisoned?).to be(true)
+            end
+    
+        end
+
         describe '#clear_expired_status_effects' do
             
             it 'removes the effect once it it over' do
@@ -78,6 +89,15 @@ describe Player do
                 allow(paralyze).to receive(:over?).and_return(true)
                 subject.clear_expired_status_effects
                 expect(subject).to_not be_paralyzed
+            end
+
+        end
+
+        describe '#execute_damage_from_status_effects' do
+            
+            it 'reduces the hp of the player depending on status effects' do
+                subject.add_status_effect(poison)
+                expect{ subject.execute_damage_from_status_effects }.to change{ subject.hp }.by(-10)
             end
 
         end

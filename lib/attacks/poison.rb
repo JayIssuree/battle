@@ -1,10 +1,10 @@
 require_relative 'attack'
 
-class Paralyze < Attack
+class Poison < Attack
 
-    HIT_CHANCE = 80
-    MOVE_PERSISTENCE = 2
-    DEFUALT_DAMAGE = 0
+    HIT_CHANCE = 70
+    MOVE_PERSISTENCE = 5
+    DEFUALT_DAMAGE = 4
 
     def self.attack(player)
         player.add_status_effect(self.new) if hit?

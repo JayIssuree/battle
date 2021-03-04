@@ -2,8 +2,8 @@ require 'game'
 
 describe Game do
 
-    let(:player1) { double :player, :reduce_hp => nil }
-    let(:player2) { double :player, :reduce_hp => nil, :status_effects => [], :clear_expired_status_effects => nil }
+    let(:player1) { double :player, :reduce_hp => nil, :execute_damage_from_status_effects => nil }
+    let(:player2) { double :player, :reduce_hp => nil, :status_effects => [], :clear_expired_status_effects => nil, :execute_damage_from_status_effects => nil }
     let(:paralyze) { double :paralyze, :incriment_move_count => nil }
     let(:subject) { described_class.new(player1: player1, player2: player2) }
 

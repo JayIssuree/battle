@@ -38,4 +38,12 @@ describe "status attacks", type: :feature do
         expect(page).to_not have_content("Player 2 is paralyzed")
     end
 
+    it "damages the opponent when they are poisoned" do
+        sign_in_and_play
+        allow(Poison).to receive(:hit?).and_return(true)
+        click_button("Poison")
+        click_button("Return")
+        expect(page).to_not have_content("Player 2: 100HP")
+    end
+
 end

@@ -1,9 +1,9 @@
-require './lib/attacks/paralyze'
+require './lib/attacks/poison'
 
-describe Paralyze do
-
+describe Poison do
+    
     let(:subject) { described_class }
-    let(:paralyze) { subject.new }
+    let(:poison) { subject.new }
     let(:player) { double :player, :add_status_effects => nil }
 
     describe '#attack(player)' do
@@ -24,17 +24,25 @@ describe Paralyze do
     describe '#move_count' do
         
         it 'is initialized at 0' do
-            expect(paralyze.move_count).to eq(0)
+            expect(poison.move_count).to eq(0)
         end
 
         it 'incriments the move count' do
-            expect{ paralyze.incriment_move_count }.to change{ paralyze.move_count }.by(1)
+            expect{ poison.incriment_move_count }.to change{ poison.move_count }.by(1)
         end
 
         it 'determines if the status effect has ended' do
-            Paralyze::MOVE_PERSISTENCE.times { paralyze.incriment_move_count }
-            paralyze.incriment_move_count
-            expect(paralyze).to be_over
+            Poison::MOVE_PERSISTENCE.times { poison.incriment_move_count }
+            poison.incriment_move_count
+            expect(poison).to be_over
+        end
+
+    end
+
+    describe '#damage' do
+        
+        it 'returns the amount of damage that will be infliced on the poisoned player' do
+            expect(poison.damage).to eq(Poison::DEFUALT_DAMAGE)
         end
 
     end
