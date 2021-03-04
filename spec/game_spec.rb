@@ -3,7 +3,8 @@ require 'game'
 describe Game do
 
     let(:player1) { double :player, :reduce_hp => nil }
-    let(:player2) { double :player, :reduce_hp => nil }
+    let(:player2) { double :player, :reduce_hp => nil, :status_effects => [], :clear_expired_status_effects => nil }
+    let(:paralyze) { double :paralyze, :incriment_move_count => nil }
     let(:subject) { described_class.new(player1: player1, player2: player2) }
 
     describe '.create' do
@@ -42,6 +43,18 @@ describe Game do
         it 'changes the current_turn to the player that has just been attacked' do
             subject.switch_turns
             expect(subject.attacking_player).to eq(player2)
+        end
+
+        it 'incriments the status effects at the end of each turn' do
+            allow(player2).to receive(:status_effects).and_return([paralyze])
+            expect(paralyze).to receive(:incriment_move_count)
+            subject.switch_turns
+        end
+
+        it 'clears the status effects if possible at the end of each turn' do
+            allow(player2).to receive(:status_effects).and_return([paralyze])
+            expect(player2).to receive(:clear_expired_status_effects)
+            subject.switch_turns
         end
 
     end

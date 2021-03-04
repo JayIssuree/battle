@@ -26,7 +26,7 @@ describe "status attacks", type: :feature do
         expect(page).to have_content("Player 1's turn")
     end
 
-    it "only paralyzed them for 1 move" do
+    it "paralyzes them for 2 moves" do
         sign_in_and_play
         allow(Paralyze).to receive(:hit?).and_return(true)
         click_button("Paralyze")
@@ -34,6 +34,7 @@ describe "status attacks", type: :feature do
         click_button("Next")
         click_button("LightAttack")
         click_button("Return")
+        click_button("Next")
         expect(page).to_not have_content("Player 2 is paralyzed")
     end
 

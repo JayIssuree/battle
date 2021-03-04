@@ -40,6 +40,8 @@ class Game
 
     def switch_turns
         @attacking_player = defending_player
+        incriment_status_effects_move_count(attacking_player)
+        attacking_player.clear_expired_status_effects
     end
 
     private
@@ -48,6 +50,12 @@ class Game
         players.reject{|player|
             player == attacking_player
         }.first
+    end
+
+    def incriment_status_effects_move_count(player)
+        player.status_effects.each{ |effect|
+            effect.incriment_move_count
+        }
     end
 
 end

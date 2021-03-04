@@ -6,6 +6,8 @@ describe Player do
     let(:attack1) { double :attack, :name => "attack1" }
     let(:attack2) { double :attack, :name => "attack2" }
     let(:attack3) { double :attack, :name => "attack3" }
+    let(:paralyze_class) { double :paralyze_class, :name => "Paralyze" }
+    let(:paralyze) { double :paralyze, :class => paralyze_class, :over? => nil }
     let(:move_list) { [attack1, attack2, attack3] }
     
     describe '#initialie' do
@@ -50,22 +52,34 @@ describe Player do
 
     end
 
-    describe '#become_paralyzed' do
-        
-        it 'paralyzes the player' do
-            subject.become_paralyzed
-            expect(subject).to be_paralyzed
+    context '#status_effects' do
+
+        describe '#add_status_effect(move)' do
+            
+            it 'adds the status effect to the player' do
+                expect{ subject.add_status_effect(paralyze) }.to change{ subject.status_effects.length }.by(1)
+            end
+
+        end
+    
+        describe '#paralyzed' do
+            
+            it 'returns true when the player is paralyzed' do
+                subject.add_status_effect(paralyze)
+                expect(subject.paralyzed?).to be(true)
+            end
+    
         end
 
-    end
+        describe '#clear_expired_status_effects' do
+            
+            it 'removes the effect once it it over' do
+                subject.add_status_effect(paralyze)
+                allow(paralyze).to receive(:over?).and_return(true)
+                subject.clear_expired_status_effects
+                expect(subject).to_not be_paralyzed
+            end
 
-    describe '#clear_status_effects' do
-        
-        it 'clears the player of being paralyzed' do
-            subject.become_paralyzed
-            expect(subject).to be_paralyzed
-            subject.clear_status_effects
-            expect(subject).to_not be_paralyzed
         end
 
     end

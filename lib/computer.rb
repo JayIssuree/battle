@@ -4,6 +4,7 @@ class Computer < Player
         @name = name
         @hp = hp
         @move_list = move_list
+        @status_effects = []
     end
 
     def random_move

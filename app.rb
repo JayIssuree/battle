@@ -24,13 +24,6 @@ class Battle < Sinatra::Base
         erb(:attack)
     end
 
-    post '/clear_status_effects' do
-        Game.current_game.attacking_player.clear_status_effects
-        Game.current_game.switch_turns
-        redirect '/finished' if Game.current_game.finished?
-        redirect '/play'
-    end
-
     post '/switch_turns' do
         Game.current_game.switch_turns
         redirect '/finished' if Game.current_game.finished?
