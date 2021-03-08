@@ -2,7 +2,7 @@ require 'player'
 
 describe Player do
 
-    let(:subject) { described_class.new(name: 'RSPEC Player', move_list: move_list) }
+    let(:subject) { described_class.new(name: 'RSPEC Player', attack_list: attack_list, defence_list: defence_list) }
     let(:attack1) { double :attack, :name => "attack1" }
     let(:attack2) { double :attack, :name => "attack2" }
     let(:attack3) { double :attack, :name => "attack3" }
@@ -10,7 +10,9 @@ describe Player do
     let(:paralyze) { double :paralyze, :class => paralyze_class, :over? => nil }
     let(:poison_class) { double :poison_class, :name => "Poison" }
     let(:poison) { double :poison, :class => poison_class, :over? => nil, :damage => 10 }
-    let(:move_list) { [attack1, attack2, attack3] }
+    let(:attack_list) { [attack1, attack2, attack3] }
+    let(:defence1) { double :defence, :name => "defence1" }
+    let(:defence_list) { [defence1] }
     
     describe '#initialie' do
         
@@ -28,8 +30,12 @@ describe Player do
             expect(player2.hp).to eq(new_hp)
         end
 
-        it 'is initialized with a default set of moves' do
-            expect(subject.move_list).to eq(move_list)
+        it 'is initialized with a default set of attacking moves' do
+            expect(subject.attack_list).to eq(attack_list)
+        end
+
+        it 'is initialized with a default set of defending moves' do
+            expect(subject.defence_list).to eq(defence_list)
         end
 
         it 'is initialzed not paralyzed' do
@@ -40,16 +46,32 @@ describe Player do
 
     describe '#reduce_hp' do
         
-        it 'reduces the hit points of the player by a random amount' do
-            expect{ subject.reduce_hp(15) }.to change{ subject.hp }
+        it 'reduces the hit points of the player' do
+            expect{ subject.reduce_hp(15) }.to change{ subject.hp }.by(-15)
         end
 
     end
 
-    describe '#select_move(move_name)' do
+    describe '#increase_hp' do
+        
+        it 'increases the hit points of the player' do
+            expect{ subject.increase_hp(15) }.to change{ subject.hp }.by(15)
+        end
+
+    end
+
+    describe '#select_attack(move_name)' do
         
         it 'returns the move class given a string' do
-            expect(subject.select_move('attack1')).to eq(attack1)
+            expect(subject.select_attack('attack1')).to eq(attack1)
+        end
+
+    end
+
+    describe '#select_defence(move_name)' do
+        
+        it 'returns the move class given a string' do
+            expect(subject.select_defence('defence1')).to eq(defence1)
         end
 
     end

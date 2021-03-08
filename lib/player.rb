@@ -3,18 +3,21 @@ require_relative './attacks/medium_attack'
 require_relative './attacks/light_attack'
 require_relative './attacks/paralyze'
 require_relative './attacks/poison'
+require_relative './defences/heal'
 
 class Player
 
     DEFAULT_HP = 100
-    DEFAULT_MOVE_LIST = [HeavyAttack, MediumAttack, LightAttack, Paralyze, Poison]
+    DEFAULT_ATTACK_LIST = [HeavyAttack, MediumAttack, LightAttack, Paralyze, Poison]
+    DEFAULT_DEFENCE_LIST = [Heal]
 
-    attr_reader :name, :hp, :move_list, :status_effects
+    attr_reader :name, :hp, :attack_list, :defence_list, :status_effects
 
-    def initialize(name:, hp: DEFAULT_HP, move_list: DEFAULT_MOVE_LIST)
+    def initialize(name:, hp: DEFAULT_HP, attack_list: DEFAULT_ATTACK_LIST, defence_list: DEFAULT_DEFENCE_LIST)
         @name = name
         @hp = hp
-        @move_list = move_list
+        @attack_list = attack_list
+        @defence_list = defence_list
         @status_effects = []
     end
 
@@ -50,9 +53,19 @@ class Player
         @hp -= amount
     end
 
-    def select_move(move_name)
-        move_list.select{ |attack| 
+    def increase_hp(amount)
+        @hp += amount
+    end
+
+    def select_attack(move_name)
+        attack_list.select{ |attack| 
             attack.name == move_name
+        }.first
+    end
+
+    def select_defence(move_name)
+        defence_list.select{ |defence| 
+            defence.name == move_name
         }.first
     end
 

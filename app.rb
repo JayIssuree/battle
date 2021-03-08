@@ -47,6 +47,17 @@ class Battle < Sinatra::Base
         redirect "/attack/#{@random_move}"
     end
 
+    post '/defend' do
+        Game.current_game.defend_current_player(params[:move_name])
+        redirect "/defend/#{params[:move_name]}"
+    end
+
+    get '/defend/:move_name' do
+        @game = Game.current_game
+        @move = params[:move_name]
+        erb(:defend)
+    end
+
     get '/finished' do
         @game = Game.current_game
         erb(:finished)

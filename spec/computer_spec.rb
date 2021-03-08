@@ -2,9 +2,9 @@ require 'computer'
 
 describe Computer do
 
-    let(:subject) { described_class.new(move_list: move_list) }
+    let(:subject) { described_class.new(attack_list: attack_list) }
     let(:attack1) { double :attack, :name => "attack1" }
-    let(:move_list) { [attack1] }
+    let(:attack_list) { [attack1] }
     
     describe '#initialize' do
         
@@ -23,7 +23,7 @@ describe Computer do
         end
 
         it 'is initialized with a default set of moves' do
-            expect(subject.move_list).to eq(move_list)
+            expect(subject.attack_list).to eq(attack_list)
         end
 
     end

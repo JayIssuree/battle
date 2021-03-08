@@ -4,6 +4,8 @@ describe Game do
 
     let(:player1) { double :player, :reduce_hp => nil, :execute_damage_from_status_effects => nil }
     let(:player2) { double :player, :reduce_hp => nil, :status_effects => [], :clear_expired_status_effects => nil, :execute_damage_from_status_effects => nil }
+    let(:attack1) { double :attack }
+    let(:defence1) { double :defence }
     let(:paralyze) { double :paralyze, :incriment_move_count => nil }
     let(:subject) { described_class.new(player1: player1, player2: player2) }
 
@@ -57,6 +59,26 @@ describe Game do
             subject.switch_turns
         end
 
+    end
+
+    describe '#attack_defender(move_name)' do
+        
+        it 'call the correct method chain on the attacking player' do
+            expect(player1).to receive(:select_attack).with("attack1").and_return(attack1)
+            expect(attack1).to receive(:attack).with(player2)
+            subject.attack_defender("attack1")
+        end
+
+    end
+
+    describe '#defend_current_player(move_name)' do
+
+        it 'calls the correct method chain on the current player' do
+            expect(player1).to receive(:select_defence).with("defence1").and_return(defence1)
+            expect(defence1).to receive(:on).with(player1)
+            subject.defend_current_player("defence1")
+        end
+        
     end
 
     describe '#finished?' do
