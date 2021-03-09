@@ -2,9 +2,11 @@ require 'computer'
 
 describe Computer do
 
-    let(:subject) { described_class.new(attack_list: attack_list) }
-    let(:attack1) { double :attack, :name => "attack1" }
+    let(:subject) { described_class.new(attack_list: attack_list, defence_list: defence_list) }
+    let(:attack1) { double :attack }
     let(:attack_list) { [attack1] }
+    let(:defence1) { double :defence }
+    let(:defence_list) { [defence1] }
     
     describe '#initialize' do
         
@@ -39,7 +41,13 @@ describe Computer do
     describe '#random_move' do
         
         it 'returns a random move' do
+            allow(subject.all_moves).to receive(:sample).and_return(attack1)
             expect(subject.random_move).to eq(attack1)
+        end
+
+        it 'returns a defensive move' do
+            allow(subject.all_moves).to receive(:sample).and_return(defence1)
+            expect(subject.random_move).to eq(defence1)
         end
 
     end

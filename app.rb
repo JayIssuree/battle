@@ -41,10 +41,15 @@ class Battle < Sinatra::Base
         erb(:attack)
     end
 
-    post '/computer_attack' do
-        @random_move = Game.current_game.attacking_player.random_move.name
-        Game.current_game.attack_defender(@random_move)
-        redirect "/attack/#{@random_move}"
+    post '/computer_move' do
+        @random_move = Game.current_game.attacking_player.random_move
+        if @random_move < Attack
+            Game.current_game.attack_defender(@random_move.name)
+            redirect "/attack/#{@random_move}"
+        else
+            Game.current_game.defend_current_player(@random_move.name)
+            redirect "/defend/#{@random_move}"
+        end
     end
 
     post '/defend' do

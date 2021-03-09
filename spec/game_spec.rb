@@ -64,7 +64,7 @@ describe Game do
     describe '#attack_defender(move_name)' do
         
         it 'call the correct method chain on the attacking player' do
-            expect(player1).to receive(:select_attack).with("attack1").and_return(attack1)
+            expect(player1).to receive(:select_move).with("attack1").and_return(attack1)
             expect(attack1).to receive(:attack).with(player2)
             subject.attack_defender("attack1")
         end
@@ -74,7 +74,7 @@ describe Game do
     describe '#defend_current_player(move_name)' do
 
         it 'calls the correct method chain on the current player' do
-            expect(player1).to receive(:select_defence).with("defence1").and_return(defence1)
+            expect(player1).to receive(:select_move).with("defence1").and_return(defence1)
             expect(defence1).to receive(:on).with(player1)
             subject.defend_current_player("defence1")
         end

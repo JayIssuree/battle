@@ -11,13 +11,14 @@ class Player
     DEFAULT_ATTACK_LIST = [HeavyAttack, MediumAttack, LightAttack, Paralyze, Poison]
     DEFAULT_DEFENCE_LIST = [Heal]
 
-    attr_reader :name, :hp, :attack_list, :defence_list, :status_effects
+    attr_reader :name, :hp, :attack_list, :defence_list, :all_moves, :status_effects
 
     def initialize(name:, hp: DEFAULT_HP, attack_list: DEFAULT_ATTACK_LIST, defence_list: DEFAULT_DEFENCE_LIST)
         @name = name
         @hp = hp
         @attack_list = attack_list
         @defence_list = defence_list
+        @all_moves = attack_list + defence_list
         @status_effects = []
     end
 
@@ -57,15 +58,9 @@ class Player
         @hp += amount
     end
 
-    def select_attack(move_name)
-        attack_list.select{ |attack| 
-            attack.name == move_name
-        }.first
-    end
-
-    def select_defence(move_name)
-        defence_list.select{ |defence| 
-            defence.name == move_name
+    def select_move(move_name)
+        all_moves.select{ |move| 
+            move.name == move_name
         }.first
     end
 

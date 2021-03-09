@@ -18,26 +18,22 @@
 
  <% elsif @game.attacking_player.is_a?(Computer) %>
 
-    <form action=/computer_attack method=post>
-        <input type=submit value='Receive incoming attack'>
+    <form action=/computer_move method=post>
+        <input type=submit value="Computer's turn">
     </form>
 
 <% else %>
 
-    <% @game.attacking_player.attack_list.each do |move| %>
+    <form action=/attack method=post>
+        <% @game.attacking_player.attack_list.each do |move| %>
+            <input type=submit name=move_name value=<%= move %>>
+        <% end %>
+    </form>
 
-        <form action=/attack method=post>
-            <input type=submit name=move_name value=<%= move.name %>>
-        </form>
-
-    <% end %>
-
-     <% @game.attacking_player.defence_list.each do |move| %>
-
-        <form action=/defend method=post>
-            <input type=submit name=move_name value=<%= move.name %>>
-        </form>
-
-    <% end %>
+    <form action=/defend method=post>
+        <% @game.attacking_player.defence_list.each do |move| %>
+            <input type=submit name=move_name value=<%= move %>>
+        <% end %>
+    </form>
     
 <% end %>

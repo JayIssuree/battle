@@ -60,18 +60,14 @@ describe Player do
 
     end
 
-    describe '#select_attack(move_name)' do
+    describe '#select_move(move_name)' do
         
-        it 'returns the move class given a string' do
-            expect(subject.select_attack('attack1')).to eq(attack1)
+        it 'returns either an attacking or defensive move' do
+            expect(subject.select_move('attack1')).to eq(attack1)
         end
 
-    end
-
-    describe '#select_defence(move_name)' do
-        
-        it 'returns the move class given a string' do
-            expect(subject.select_defence('defence1')).to eq(defence1)
+        it 'returns either an attacking or defensive move' do
+            expect(subject.select_move('defence1')).to eq(defence1)
         end
 
     end

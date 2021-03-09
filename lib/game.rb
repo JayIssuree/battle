@@ -21,11 +21,11 @@ class Game
     end
 
     def attack_defender(move_name)
-        attacking_player.select_attack(move_name).attack(defending_player)
+        attacking_player.select_move(move_name).attack(defending_player)
     end
 
     def defend_current_player(move_name)
-        attacking_player.select_defence(move_name).on(attacking_player)
+        attacking_player.select_move(move_name).on(attacking_player)
     end
 
     def defending_player
