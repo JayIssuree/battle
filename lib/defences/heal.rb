@@ -7,6 +7,10 @@ class Heal
         player.increase_hp(calculate_heal) if hit?
     end
 
+    def self.description
+        "Has a #{HIT_CHANCE}% chance to heal yourself for #{HEAL_RANGE} hit points"
+    end
+
     private
 
     def self.hit?

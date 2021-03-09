@@ -7,6 +7,10 @@ class Attack
         player.reduce_hp(calculate_damage) if hit?
     end
 
+    def self.description
+        "Has a #{self::HIT_CHANCE}% chance to do #{self::DAMAGE_RANGE} damage"
+    end
+
     private
 
     def self.hit?

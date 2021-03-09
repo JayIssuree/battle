@@ -1,3 +1,7 @@
+<head>
+  <link href="<%= url('/styles.css') %>" rel="stylesheet" type="text/css" />
+</head>
+
 <h1>
     <%= @game.player1.name %> vs <%= @game.player2.name %>
 </h1>
@@ -26,13 +30,19 @@
 
     <form action=/attack method=post>
         <% @game.attacking_player.attack_list.each do |move| %>
-            <input type=submit name=move_name value=<%= move %>>
+            <input class="myDIV" type=submit name=move_name value=<%= move %>>
+            <div class="hide">
+                <%= move.description %>
+            </div>
         <% end %>
     </form>
 
     <form action=/defend method=post>
         <% @game.attacking_player.defence_list.each do |move| %>
-            <input type=submit name=move_name value=<%= move %>>
+            <input class="myDIV" type=submit name=move_name value=<%= move %>>
+            <div class="hide">
+                <%= move.description %>
+            </div>
         <% end %>
     </form>
     

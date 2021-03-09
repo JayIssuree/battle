@@ -10,6 +10,10 @@ class Paralyze < Attack
         player.add_status_effect(self.new) if hit?
     end
 
+    def self.description
+        "Has a #{HIT_CHANCE}% chance to do Paralyze the opponent for #{MOVE_PERSISTENCE} moves"
+    end
+
     attr_reader :move_count, :damage
 
     def initialize

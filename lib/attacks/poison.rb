@@ -10,6 +10,10 @@ class Poison < Attack
         player.add_status_effect(self.new) if hit?
     end
 
+    def self.description
+        "Has a #{HIT_CHANCE}% chance to inflict a Poison that does #{DEFUALT_DAMAGE} damage to the opponent at the start of their turn for #{MOVE_PERSISTENCE} turns. Does stack."
+    end
+
     attr_reader :move_count, :damage
 
     def initialize
