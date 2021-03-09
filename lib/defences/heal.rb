@@ -8,7 +8,7 @@ class Heal
     end
 
     def self.description
-        "Has a #{HIT_CHANCE}% chance to heal yourself for #{HEAL_RANGE} hit points"
+        "Has a #{self::HIT_CHANCE}% chance to heal yourself for #{self::HEAL_RANGE} hit points"
     end
 
     private

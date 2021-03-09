@@ -4,12 +4,13 @@ require_relative './attacks/light_attack'
 require_relative './attacks/paralyze'
 require_relative './attacks/poison'
 require_relative './defences/heal'
+require_relative './defences/greater_heal'
 
 class Player
 
     DEFAULT_HP = 100
     DEFAULT_ATTACK_LIST = [HeavyAttack, MediumAttack, LightAttack, Paralyze, Poison]
-    DEFAULT_DEFENCE_LIST = [Heal]
+    DEFAULT_DEFENCE_LIST = [Heal, GreaterHeal]
 
     attr_reader :name, :hp, :attack_list, :defence_list, :all_moves, :status_effects
 
