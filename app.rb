@@ -3,6 +3,8 @@ require './lib/game'
 
 class Battle < Sinatra::Base
 
+    set :static, true
+
     get '/' do
         erb(:index)
     end

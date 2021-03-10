@@ -33,6 +33,8 @@
         <% end %>
     </form>
 
+    <br>
+
     <form action=/defend method=post>
         <% @game.attacking_player.defence_list.each do |move| %>
             <input class="myDIV" type=submit name=move_name value=<%= move %>>
